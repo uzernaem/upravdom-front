@@ -1,0 +1,26 @@
+<div>
+  <nav class="navbar navbar-dark bg-dark">
+    <div  fxLayout="row" fxLayoutGap="20px" class="navbar-nav mr-auto">      
+        <a class="nav-item" routerLink="" class="navbar-brand"><mat-icon>home</mat-icon></a>
+        <a class="nav-item" routerLink="todos" class="nav-link"><mat-icon>task</mat-icon></a>
+        <a class="nav-item" routerLink="announcements" class="nav-link"><mat-icon>campaign</mat-icon></a>
+        <a class="nav-item" routerLink="todos" class="nav-link"><mat-icon>poll</mat-icon></a>
+        <a class="nav-item" routerLink="notifications" class="nav-link"><mat-icon>notification_important</mat-icon></a>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px" class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <a class="nav-item" href="/register" class="nav-link" routerLink="register"><mat-icon>how_to_reg</mat-icon></a>
+        <a class="nav-item" href="/login" class="nav-link" routerLink="login"><mat-icon>login</mat-icon></a>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px" class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <a class="nav-item" href="/profile" class="nav-link" routerLink="profile"><mat-icon>person</mat-icon></a>
+        <a href class="nav-link" (click)="logout()"><mat-icon>logout</mat-icon></a>
+    </div>
+
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>

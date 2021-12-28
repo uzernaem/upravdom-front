@@ -1,0 +1,72 @@
+<form [formGroup]="inquiryForm">
+    <h2 mat-dialog-title>Новое объявление</h2>
+    <div>
+      <label><strong>От:</strong></label>
+      {{ currentuser.first_name }} {{ currentuser.last_name }}
+    </div>
+        <mat-dialog-content class="mat-typography">
+          <div class="submit-form">          
+              <div class="form-group">
+                <mat-form-field appearance="fill" >
+                  <mat-label>Тема объявления</mat-label>
+                  <input matInput type="text" placeholder="Введите тему объявления" name="inquiry_title" required formControlName="title" maxlength="256">
+                  <mat-error>
+                    Пожалуйста, введите тему объявления
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Текст объявления</mat-label>
+                  <textarea
+                  required
+                  matInput type="text" 
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="5"
+                  cdkAutosizeMaxRows="8"
+                  placeholder="Введите текст объявления"
+                  name="inquiry_text"
+                  formControlName="text"
+                  maxlength="4096"></textarea>
+                  <mat-error>
+                    Пожалуйста, введите текст объявления
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div class="form-group">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Категория</mat-label>
+                    <mat-select name="todo_category" required formControlName="category">
+                      <mat-option *ngFor="let category of categories" [value]="category.category_id">
+                        {{category.category_name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error>
+                      Пожалуйста, выберите категорию объявления
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+            <mat-label>Автоматическое снятие с публикации:</mat-label>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Выберите дату</mat-label>
+                    <input matInput [matDatepicker]="dp" required formControlName="date" [formControl]="datePickerCtrl">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <p><mat-checkbox formControlName="publish" [checked]="true">Опубликовать объявление</mat-checkbox></p>
+
+        </div>
+
+
+        </mat-dialog-content>
+    
+        <mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit" [disabled]="inquiryForm.invalid" (click)="saveInquiry()">Создать</button>     
+            <button mat-button mat-dialog-close>Закрыть</button>
+        </mat-dialog-actions>
+      </form>

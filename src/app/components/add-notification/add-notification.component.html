@@ -1,0 +1,71 @@
+<form [formGroup]="inquiryForm">
+    <h2 mat-dialog-title>Новое уведомление</h2>
+
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Получатель</mat-label>
+          <mat-select name="notification_recipient" required formControlName="user">
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              {{user.first_name}} {{user.last_name}}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            Пожалуйста, выберите получателя
+          </mat-error>
+        </mat-form-field>
+    </div>
+
+        <mat-dialog-content class="mat-typography">
+          <div class="submit-form">          
+              <div class="form-group">
+                <mat-form-field appearance="fill" >
+                  <mat-label>Тема уведомления</mat-label>
+                  <input matInput type="text" placeholder="Введите тему уведомления" name="inquiry_title" required formControlName="title" maxlength="256">
+                  <mat-error>
+                    Пожалуйста, введите тему уведомления
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Текст уведомления</mat-label>
+                  <textarea
+                  required
+                  matInput type="text" 
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="5"
+                  cdkAutosizeMaxRows="8"
+                  placeholder="Введите текст уведомления"
+                  name="inquiry_text"
+                  formControlName="text"
+                  maxlength="4096"></textarea>
+                  <mat-error>
+                    Пожалуйста, введите текст уведомления
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div class="form-group">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Категория</mat-label>
+                    <mat-select name="todo_category" required formControlName="category">
+                      <mat-option *ngFor="let category of categories" [value]="category.category_id">
+                        {{category.category_name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error>
+                      Пожалуйста, выберите категорию уведомления
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+
+        </div>
+
+        </mat-dialog-content>
+    
+        <mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit" [disabled]="inquiryForm.invalid" (click)="saveInquiry()">Отправить</button>     
+            <button mat-button mat-dialog-close>Закрыть</button>
+        </mat-dialog-actions>
+      </form>

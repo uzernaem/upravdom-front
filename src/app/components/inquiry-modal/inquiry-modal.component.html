@@ -1,0 +1,99 @@
+<form [formGroup]="inquiryForm">
+<h2 mat-dialog-title>{{ currentToDo.inquiry_title }}</h2>
+<mat-dialog-content class="mat-typography">
+
+    <div *ngIf="currentToDo.inquiry_id" class="edit-form">
+          <div>
+            <label><strong>От: </strong></label>
+            {{ currentToDo.inquiry_creator!.first_name }} {{ currentToDo.inquiry_creator!.last_name }}
+          </div>
+          <div>
+            <label><strong>Текст заявки: </strong></label>
+            <label>{{ currentToDo.inquiry_text }}</label>
+          </div>
+          <div>
+            <label><strong>Категория: </strong></label>
+            {{ currentToDo.todo_category_name }}
+          </div>
+  
+          <div>
+            <label><strong>Приоритет: </strong></label>
+            {{ currentToDo.todo_priority_name }}
+          </div>
+
+          <div>
+            <label><strong>Текущий статус: </strong></label>
+            {{ currentToDo.todo_status_name }}
+          </div>
+
+          <div>
+            <label><strong>Исполнитель по заявке: </strong></label>
+            {{ currentToDo.todo_assigned_to!.first_name }} {{ currentToDo.todo_assigned_to!.last_name }}
+          </div>
+
+      </div>
+
+      <div><h2>Комментарии:</h2></div>
+<div>
+      <mat-form-field appearance="fill">
+        <mat-label>Введите комментарий</mat-label>
+        <textarea 
+        matInput type="text" 
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="8"
+        placeholder="Введите комментарий"
+        formControlName="comment"
+        name="comment_text"
+        required></textarea>
+      </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" (click)="saveComment()" [disabled]="inquiryForm.invalid">
+        Опубликовать
+      </button>
+    <p>{{ message }}</p>
+    </div>
+</div>
+
+      <div *ngFor="let comment of comments">
+        <mat-card class="cards">
+          <mat-card-subtitle>{{ comment.comment_created_at!.toLocaleString() }}</mat-card-subtitle>
+          <label><strong>От: </strong>{{ comment.comment_creator!.first_name }} {{ comment.comment_creator!.last_name }}</label>
+          <div><label>{{ comment.comment_text }}</label></div>
+        </mat-card>
+      </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div *ngIf="(currentToDo.todo_status==='w') &&  (currentuser!.is_manager)">
+    <div>
+      <label><strong>Изменить исполнителя: </strong></label>
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Выберите из списка</mat-label>
+      <mat-select formControlName="assignee" name="todo_assigned_to" (selectionChange)="updateInquiry('w')">
+        <mat-option *ngFor="let user of managers" [value]="user.id">
+          {{user.first_name}} {{user.last_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  </mat-dialog-actions>
+
+<mat-dialog-actions align="end">
+<div [ngSwitch]="currentToDo.todo_status">
+  <div *ngSwitchCase="'n'">
+    <button mat-raised-button [disabled]="(!currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('nw')">Взять в работу</button>
+  </div>
+  <div *ngSwitchCase="'w'">
+    <button mat-raised-button [disabled]="(currentuser!.id != currentToDo.todo_assigned_to!.id) || (!currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('r')">Отправить на проверку</button> 
+  </div>
+  <div *ngSwitchCase="'r'">
+    <button mat-raised-button [disabled]="(currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('c')">Завершить заявку</button>  
+    <button mat-raised-button [disabled]="(currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('w')">Вернуть в работу</button> 
+  </div>
+</div>
+  <button mat-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>
+</form>

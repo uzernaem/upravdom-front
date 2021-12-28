@@ -1,0 +1,55 @@
+<div class="main-div">
+<form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <mat-card>
+    <mat-card-content>    
+      <h2>Вход в систему</h2>
+      <mat-error *ngIf="f.submitted && isLoginFailed">
+        Введены неверные имя пользователя и/или пароль
+      </mat-error>
+      <mat-form-field class="full-width-input">
+        <input matInput
+        type="text"
+        placeholder="Имя пользователя"
+        name="username"
+        [(ngModel)]="form.username"
+        required
+        #username="ngModel"
+      />
+        <mat-error>
+          Пожалуйста, введите имя пользователя
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput
+            type="password"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel"
+          />
+        <mat-error>
+          Пожалуйста, введите пароль пользователя
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Login</button>
+    </mat-card-content>
+  </mat-card>
+</form>
+
+<form *ngIf="isLoggedIn" >
+  <mat-card>
+    <mat-card-content>    
+      <h2>Вы вошли в систему!</h2>
+    </mat-card-content>
+  </mat-card>
+</form>
+
+<form *ngIf="isLoginFailed" >
+  <mat-card>
+    <mat-card-content>    
+      <h2>{{errorMessage}}</h2>
+    </mat-card-content>
+  </mat-card>
+</form>
+</div>

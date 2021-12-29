@@ -66,7 +66,7 @@
   
   </mat-expansion-panel-header>
 
-    <mat-card>
+    
       <mat-card-subtitle>
         <div fxLayout="row wrap" fxLayoutGap="20px">
           <div class="icon-text"><mat-icon>person</mat-icon>{{ todo.inquiry_creator!.first_name }} {{ todo.inquiry_creator!.last_name }}</div>
@@ -74,7 +74,11 @@
         </div>
       </mat-card-subtitle>
       <mat-card-content>
+        <mat-card>
+          <mat-card-content>
         <p>{{ todo.inquiry_text }}</p>
+      </mat-card-content>
+      </mat-card>
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>              
@@ -85,7 +89,6 @@
       </mat-card-actions>
       <mat-card-footer>
       </mat-card-footer>
-    </mat-card>
 
   </mat-expansion-panel>
 </div>

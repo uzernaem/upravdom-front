@@ -39,18 +39,24 @@ export class AnnouncementsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    var s = new Date();
+    var e = new Date();
+    s.setDate(s.getMonth()-10);
+    this.range.patchValue({start: s, end: e})
     this.categoryFilter = ['0', '1', '2', '3', '4', '5'];
     this.retrieveAnnouncements();
   }
 
   retrieveAnnouncements(): void {
+    const s = new Date(this.range.value.start + this.range.value.start.getTimezoneOffset());    
+    const e = new Date(this.range.value.end + this.range.value.end.getTimezoneOffset());
     this.inquiryService.getAnnouncements()
       .subscribe({
         next: (data) => {
           this.announcements = data;
           this.announcements.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
           this.listedannouncements = data.filter(x =>
-            (this.categoryFilter.includes(x.announcement_category!))).filter(x => (x.inquiry_title?.includes(this.search_title)));
+            (this.categoryFilter.includes(x.announcement_category!))).filter(x => (x.inquiry_title?.includes(this.search_title))).filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e)));
           console.log(data);
         },
         error: (e) => console.error(e)

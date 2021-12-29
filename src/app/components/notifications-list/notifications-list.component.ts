@@ -36,17 +36,23 @@ export class NotificationsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    var s = new Date();
+    var e = new Date();
+    s.setDate(s.getMonth()-10);
+    this.range.patchValue({start: s, end: e})
     this.retrieveNotifications();            
     this.retrieveCurrentUser();
   }
 
-  retrieveNotifications(): void {
+  retrieveNotifications(): void {    
+    const s = new Date(this.range.value.start + this.range.value.start.getTimezoneOffset());    
+    const e = new Date(this.range.value.end + this.range.value.end.getTimezoneOffset());
     this.inquiryService.getNotifications()
       .subscribe({
         next: (data) => {          
           this.notifications = data;
           this.notifications.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
-          this.listednotifications = this.notifications;
+          this.listednotifications = this.notifications.filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e))).filter(x => (x.inquiry_title?.includes(this.search_title)));
           console.log(data);
         },
         error: (e) => console.error(e)
@@ -76,7 +82,7 @@ export class NotificationsListComponent implements OnInit {
   applyFilters() {    
     const s = new Date(this.range.value.start + this.range.value.start.getTimezoneOffset());    
     const e = new Date(this.range.value.end + this.range.value.end.getTimezoneOffset());
-    this.listednotifications = this.notifications!.filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e)));
+    this.listednotifications = this.notifications!.filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e))).filter(x => (x.inquiry_title?.includes(this.search_title)));
   }
 
   newInquiryDialog(id?: number) {

@@ -46,6 +46,18 @@ export class Notification {
     notification_category_name?: string
 }
 
+export class Poll {
+    inquiry_id?: number
+    inquiry_title?: string
+    inquiry_text?: string
+    inquiry_creator?: User
+    inquiry_created_at?: Date
+    inquiry_updated_at?: Date
+    poll_open?: boolean
+    poll_preliminary_results?: boolean
+    poll_deadline?: Date
+}
+
 export class Comment {
     comment_id?: number
     inquiry?: number

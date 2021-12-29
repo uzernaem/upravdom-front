@@ -52,7 +52,8 @@ export class NotificationsListComponent implements OnInit {
         next: (data) => {          
           this.notifications = data;
           this.notifications.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
-          this.listednotifications = this.notifications.filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e))).filter(x => (x.inquiry_title?.includes(this.search_title)));
+          this.applyFilters();
+          //this.listednotifications = this.notifications.filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e))).filter(x => (x.inquiry_title?.includes(this.search_title)));
           console.log(data);
         },
         error: (e) => console.error(e)

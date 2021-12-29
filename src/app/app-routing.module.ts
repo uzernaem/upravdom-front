@@ -10,14 +10,16 @@ import { InquiryModalComponent } from './components/inquiry-modal/inquiry-modal.
 import { AnnouncementsListComponent } from './components/announcements-list/announcements-list.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NotificationsListComponent } from './components/notifications-list/notifications-list.component';
+import { PollsListComponent } from './components/polls-list/polls-list.component';
 
 const routes: Routes = [ 
   { path: '', component: MenuComponent },
   { path: 'todos', component: InquiriesListComponent },
   { path: 'todos/:id', component: InquiryModalComponent },
   { path: 'todos/add', component: AddInquiryComponent },  
-  { path: 'announcements', component: AnnouncementsListComponent },  
+  { path: 'announcements', component: AnnouncementsListComponent },
   { path: 'notifications', component: NotificationsListComponent },
+  { path: 'polls', component: PollsListComponent },
   { path: 'todos', component: InquiriesListComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },

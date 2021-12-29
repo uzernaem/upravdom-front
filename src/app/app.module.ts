@@ -44,6 +44,7 @@ import { NotificationsListComponent } from './components/notifications-list/noti
 import { AddNotificationComponent } from './components/add-notification/add-notification.component';
 import { NotificationModalComponent } from './components/notification-modal/notification-modal.component';
 import { CustomDateAdapter } from './custom-date-adapter';
+import { PollsListComponent } from './components/polls-list/polls-list.component';
 
 
 
@@ -95,7 +96,8 @@ const modules = [
     MenuComponent,
     NotificationsListComponent,
     AddNotificationComponent,
-    NotificationModalComponent
+    NotificationModalComponent,
+    PollsListComponent
   ],
   imports: [modules, BrowserAnimationsModule],
   exports: [modules],

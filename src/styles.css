@@ -11,3 +11,9 @@ body {
   h1 {
     text-align: center;
   }
+
+
+.icon-text {
+  display: flex;
+  align-items: center;
+}

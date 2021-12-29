@@ -65,30 +65,27 @@
     </mat-panel-description>
   
   </mat-expansion-panel-header>
-  <mat-grid-list cols="10" rowHeight="32px" >
-    <mat-grid-tile colspan="2" rowspan="3" >      
-      <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-    </mat-grid-tile>
-    <mat-grid-tile colspan="8" rowspan="5" >
-      <mat-card fxLayout="row" fxLayoutGap="20px" fxFlexFill>
-        {{ todo.inquiry_text }}   
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="1" >
-      <mat-icon>person</mat-icon>{{ todo.inquiry_creator!.first_name }} {{ todo.inquiry_creator!.last_name }}
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="1" >
-      <mat-icon>phone</mat-icon>{{ todo!.inquiry_creator!.phone_number }}
-    </mat-grid-tile>
 
-
-        <mat-grid-tile colspan="1">
-      <button mat-raised-button color="primary" (click)="newInquiryDialog(todo.inquiry_id)">Открыть</button>
-    </mat-grid-tile>
-      <mat-grid-tile colspan="1">
-      {{ todo.todo_priority_name }}
-      </mat-grid-tile>
-      </mat-grid-list>
+    <mat-card>
+      <mat-card-subtitle>
+        <div fxLayout="row wrap" fxLayoutGap="20px">
+          <div class="icon-text"><mat-icon>person</mat-icon>{{ todo.inquiry_creator!.first_name }} {{ todo.inquiry_creator!.last_name }}</div>
+          <div class="icon-text"><mat-icon>phone</mat-icon>{{ todo!.inquiry_creator!.phone_number }}</div>
+        </div>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <p>{{ todo.inquiry_text }}</p>
+      </mat-card-content>
+      <mat-divider inset></mat-divider>
+      <mat-card-actions>              
+        <div fxLayout="row wrap" fxLayoutGap="20px">
+          <div><button mat-raised-button color="primary" (click)="newInquiryDialog(todo.inquiry_id)">Открыть</button></div>
+          <div>{{ todo.todo_priority_name }} приоритет</div>
+        </div>
+      </mat-card-actions>
+      <mat-card-footer>
+      </mat-card-footer>
+    </mat-card>
 
   </mat-expansion-panel>
 </div>

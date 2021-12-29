@@ -42,8 +42,13 @@
 <div fxLayout="row wrap" fxLayoutGap="16px grid">
 <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let announcement of listedannouncements">
   <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="10px" class="container"  fxLayoutAlign="left">
-    <mat-card class="example-card">
-      <mat-card-subtitle>{{ announcement.inquiry_creator!.first_name }} {{ announcement.inquiry_creator!.last_name }}</mat-card-subtitle>
+    <mat-card>
+      <mat-card-subtitle>
+        <div fxLayout="row wrap" fxLayoutGap="20px">
+          <div class="icon-text"><mat-icon>person</mat-icon>{{ announcement.inquiry_creator!.first_name }} {{ announcement.inquiry_creator!.last_name }}</div>
+          <div class="icon-text"><mat-icon>phone</mat-icon>{{ announcement!.inquiry_creator!.phone_number }}</div>
+        </div>
+      </mat-card-subtitle>
       <mat-card-title>{{ announcement.inquiry_title }}</mat-card-title>
       <mat-card-content>
         <p>{{ announcement.inquiry_created_at!.toLocaleString() }} </p>

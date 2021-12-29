@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ToDo, InquiryCategory, Comment, Announcement, Notification } from '../models/inquiry.model';
 import { User } from '../models/user.model';
 
-const baseUrl = 'https://upravdom-23b8c.ondigitalocean.app/inquiries/api/';
+const baseUrl = 'http://localhost:8000/inquiries/api/';
 
 @Injectable({
   providedIn: 'root'

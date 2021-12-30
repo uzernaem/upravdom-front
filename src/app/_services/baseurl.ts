@@ -1,0 +1,1 @@
+export const serverUrl = 'https://upravdom-23b8c.ondigitalocean.app/'

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { serverUrl } from '../_services/baseurl';
 
-const API_URL = 'https://upravdom-23b8c.ondigitalocean.app/auth/test/';
+const API_URL = serverUrl+'auth/test/';
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { serverUrl } from '../_services/baseurl';
 
-const AUTH_API = 'https://upravdom-23b8c.ondigitalocean.app/auth/';
+const AUTH_API = serverUrl+'auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

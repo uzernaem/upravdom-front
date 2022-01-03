@@ -48,16 +48,12 @@ export class AnnouncementsListComponent implements OnInit {
   }
 
   retrieveAnnouncements(): void {
-    // const s = new Date(this.range.value.start + this.range.value.start.getTimezoneOffset());    
-    // const e = new Date(this.range.value.end + this.range.value.end.getTimezoneOffset());
     this.inquiryService.getAnnouncements()
       .subscribe({
         next: (data) => {
           this.announcements = data;
           this.announcements.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
           this.applyFilters();
-          // this.listedannouncements = data.filter(x =>
-          //   (this.categoryFilter.includes(x.announcement_category!))).filter(x => (x.inquiry_title?.includes(this.search_title))).filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e)));
           console.log(data);
         },
         error: (e) => console.error(e)
@@ -101,6 +97,4 @@ export class AnnouncementsListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
 }
-

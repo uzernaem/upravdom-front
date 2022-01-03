@@ -33,7 +33,6 @@ export class AddInquiryComponent implements OnInit {
 
   ngOnInit(): void {    
     this.currentuser = this.tokenStorage.getUser();
-    //this.retrieveCurrentUser;
     this.inquiryForm = new FormGroup({
       title: new FormControl('', Validators.required),
       text: new FormControl('', Validators.required),

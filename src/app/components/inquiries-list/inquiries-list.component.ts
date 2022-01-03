@@ -16,11 +16,8 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class InquiriesListComponent implements OnInit {
 
   todos?: ToDo[];
-  //users?: User[];
   listedtodos?: ToDo[];
   categories: InquiryCategory[] = [];
-  // currentToDo: ToDo = {};
-  // currentIndex = -1;
   search_title = '';
 
   filters!: FormGroup;
@@ -61,22 +58,15 @@ export class InquiriesListComponent implements OnInit {
     this.categoryFilter = ['1', '2', '3', '4', '5'];
     this.priorityFilter = ['0', '1', '2', '3'];
     this.retrieveInquiries();
-    //this.retrieveUsers();
   }
 
   retrieveInquiries(): void {
-    // const s = new Date(this.range.value.start + this.range.value.start.getTimezoneOffset());    
-    // const e = new Date(this.range.value.end + this.range.value.end.getTimezoneOffset());
     this.inquiryService.getToDos()
       .subscribe({
         next: (data) => {
           this.todos = data;
           this.todos.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
           this.applyFilters();
-          // this.todos.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
-          // this.listedtodos = this.todos.filter(x => (this.statusFilter.includes(x.todo_status!))).filter(x =>
-          //   (this.categoryFilter.includes(x.todo_category!))).filter(x => 
-          //    (this.priorityFilter.includes(x.todo_priority!))).filter(x => (x.inquiry_title?.includes(this.search_title))).filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e)));
           console.log(data);
         },
         error: (e) => console.error(e)
@@ -142,6 +132,4 @@ export class InquiriesListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
 }
-

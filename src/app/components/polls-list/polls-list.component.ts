@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Poll } from 'src/app/models/inquiry.model';
 import { InquiryService } from 'src/app/_services/inquiry.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AddAnnouncementComponent } from '../add-announcement/add-announcement.component';
 import { AnnouncementModalComponent } from '../announcement-modal/announcement-modal.component';
 

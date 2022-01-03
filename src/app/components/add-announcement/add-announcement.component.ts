@@ -38,7 +38,6 @@ export class AddAnnouncementComponent implements OnInit {
   ngOnInit(): void {    
     this.dateAdapter.setLocale('ru');
     this.currentuser = this.tokenStorage.getUser();
-    //this.retrieveCurrentUser;
     this.inquiryForm = new FormGroup({
       title: new FormControl('', Validators.required),
       text: new FormControl('', Validators.required),

@@ -54,10 +54,6 @@ export class AnnouncementModalComponent implements OnInit {
         .subscribe({
           next: (data) => {
             this.announcement = data;
-            // this.inquiryForm.patchValue({
-            //   assignee: data.todo_assigned_to!.id,
-            //   status: data.todo_status
-            // })
             this.comments = data.comments!.sort((a,b) => b.comment_id! - a.comment_id!);
             this.comments.forEach(a => (a.comment_created_at = new Date(a.comment_created_at!)));
             console.log(data);
@@ -104,7 +100,6 @@ export class AnnouncementModalComponent implements OnInit {
           },
           error: (e) => console.error(e)
         });
-      //window.location.reload(); 
     }
 
     deleteInquiry(): void {

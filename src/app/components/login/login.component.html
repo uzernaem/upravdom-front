@@ -1,6 +1,5 @@
-<div class="main-div">
+<div class="main-div" >
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-    <mat-card>
       <mat-card-content>    
         <h2>Вход в систему</h2>
         <mat-error *ngIf="f.submitted && isLoginFailed">
@@ -34,7 +33,6 @@
         </mat-form-field>
         <button mat-raised-button color="primary">Login</button>
       </mat-card-content>
-    </mat-card>
   </form>
   
   <form *ngIf="isLoginFailed" >

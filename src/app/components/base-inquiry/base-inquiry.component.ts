@@ -10,7 +10,7 @@ import { InquiryService } from 'src/app/_services/inquiry.service';
   styleUrls: ['./base-inquiry.component.css']
 })
 export class BaseInquiryComponent {  
-  public currentuser?: User;
+  public currentuser: User = { id: 0 };
   public comments: Comment[] = []
   public inquiryForm!: FormGroup;
   constructor(protected inquiryService: InquiryService) { }

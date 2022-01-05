@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InquiryModalComponent } from './inquiry-modal.component';
+import { InquiryModalComponent } from './todo-modal.component';
 
 describe('InquiryModalComponent', () => {
   let component: InquiryModalComponent;

@@ -1,16 +1,19 @@
-<form [formGroup]="inquiryForm">
+<form [formGroup]="inquiryForm" >
 <h2 mat-dialog-title>{{ currentToDo.inquiry_title }}</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography" >
 
     <div *ngIf="currentToDo.inquiry_id" class="edit-form">
           <div>
             <label><strong>От: </strong></label>
             {{ currentToDo.inquiry_creator!.first_name }} {{ currentToDo.inquiry_creator!.last_name }}
           </div>
-          <div>
+          <div >
             <label><strong>Текст заявки: </strong></label>
-            <mat-card>{{ currentToDo.inquiry_text }}</mat-card>
+            <mat-card>
+                {{ currentToDo.inquiry_text }}
+            </mat-card>
           </div>
+          <br>
           <div>
             <label><strong>Категория: </strong></label>
             {{ currentToDo.todo_category_name }}
@@ -33,9 +36,10 @@
 
       </div>
 
+      <br>
       <div><h2>Комментарии:</h2></div>
 <div>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" [style.width.%]="100">
         <mat-label>Введите комментарий</mat-label>
         <textarea 
         matInput type="text" 
@@ -48,7 +52,7 @@
         required></textarea>
       </mat-form-field>
     <div>
-      <button mat-raised-button color="primary" (click)="saveComment(currentToDo.inquiry_id)" [disabled]="inquiryForm.invalid">
+      <button mat-button color="primary" (click)="saveComment(currentToDo.inquiry_id)" [disabled]="inquiryForm.invalid">
         Опубликовать
       </button>
     <p>{{ message }}</p>
@@ -65,7 +69,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <div *ngIf="(currentToDo.todo_assigned_to!.id===currentuser!.id)">
+  <div *ngIf="(currentToDo.todo_assigned_to.id===currentuser.id)">
     <div>
       <label><strong>Изменить исполнителя: </strong></label>
     </div>
@@ -83,14 +87,14 @@
 <mat-dialog-actions align="end">
 <div [ngSwitch]="currentToDo.todo_status">
   <div *ngSwitchCase="'n'">
-    <button mat-raised-button [disabled]="(!currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('w')">Взять в работу</button>
+    <button mat-button [disabled]="(!currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('w')">Взять в работу</button>
   </div>
   <div *ngSwitchCase="'w'">
-    <button mat-raised-button [disabled]="(currentuser!.id != currentToDo.todo_assigned_to!.id) || (!currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('r')">Отправить на проверку</button> 
+    <button mat-button [disabled]="(currentuser!.id != currentToDo.todo_assigned_to!.id) || (!currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('r')">Отправить на проверку</button> 
   </div>
   <div *ngSwitchCase="'r'">
-    <button mat-raised-button [disabled]="(currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('c')">Завершить заявку</button>  
-    <button mat-raised-button [disabled]="(currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('w')">Вернуть в работу</button> 
+    <button mat-button [disabled]="(currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('c')">Завершить заявку</button>  
+    <button mat-button [disabled]="(currentuser!.is_manager)" [mat-dialog-close]="true" color="primary" type="submit" (click)="updateInquiry('w')">Вернуть в работу</button> 
   </div>
 </div>
   <button mat-button mat-dialog-close>Закрыть</button>

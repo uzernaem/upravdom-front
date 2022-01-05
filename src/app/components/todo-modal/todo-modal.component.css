@@ -1,0 +1,12 @@
+.cards{
+    margin-bottom: 5px;    
+    margin-top: 5px;
+}
+
+::ng-deep .edit-form {
+    justify-content: flex-start !important
+  }
+
+::ng-deep .mat-dialog-container {
+    max-width: 600px;
+}

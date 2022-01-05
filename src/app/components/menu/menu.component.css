@@ -7,3 +7,8 @@
 .align-items-center {
     align-items: center;
   }
+
+.mat-button
+{
+    width: 350px;
+}

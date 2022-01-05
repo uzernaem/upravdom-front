@@ -13,9 +13,9 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'app-inquiry-modal',
-  templateUrl: './inquiry-modal.component.html',
-  styleUrls: ['./inquiry-modal.component.css']
+  selector: 'app-todo-modal',
+  templateUrl: './todo-modal.component.html',
+  styleUrls: ['./todo-modal.component.css']
 })
 
 export class InquiryModalComponent extends BaseInquiryComponent implements OnInit {
@@ -34,7 +34,7 @@ export class InquiryModalComponent extends BaseInquiryComponent implements OnIni
 
   @Input() viewMode = false;
 
-  @Input() currentToDo: ToDo = {};
+  @Input() currentToDo: ToDo = { todo_assigned_to: 0 };
 
   message = '';
 
@@ -65,7 +65,7 @@ export class InquiryModalComponent extends BaseInquiryComponent implements OnIni
           next: (data) => {
             this.currentToDo = data;
             this.inquiryForm.patchValue({
-              assignee: data.todo_assigned_to!.id,
+              assignee: data.todo_assigned_to.id,
               status: data.todo_status
             })
             this.comments = data.comments!.sort((a,b) => b.comment_id! - a.comment_id!);
@@ -91,9 +91,9 @@ export class InquiryModalComponent extends BaseInquiryComponent implements OnIni
     }
 
     updateInquiry(status: string): void {
-      let dateTime = new Date()
+      let dateTime = new Date();
       if (this.currentToDo.todo_assigned_to.username=="")
-        this.currentToDo.todo_assigned_to = this.currentuser!.id;
+        this.currentToDo.todo_assigned_to = this.currentuser.id;
       else
         this.currentToDo.todo_assigned_to = this.inquiryForm.value.assignee;
       this.currentToDo.todo_status = status;

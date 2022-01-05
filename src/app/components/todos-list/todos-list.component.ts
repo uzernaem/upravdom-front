@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToDo, InquiryCategory } from 'src/app/models/inquiry.model';
 import { InquiryService } from 'src/app/_services/inquiry.service';
 import { MatDialog } from '@angular/material/dialog';
-import { InquiryModalComponent } from '../todo-modal/inquiry-modal.component';
-import { AddInquiryComponent } from '../add-todo/add-inquiry.component';
+import { InquiryModalComponent } from '../todo-modal/todo-modal.component';
+import { AddInquiryComponent } from '../add-todo/add-todo.component';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 

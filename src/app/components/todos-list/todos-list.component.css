@@ -4,10 +4,9 @@
     margin: auto;
   }
 
-.mat-grid-tile .mat-figure {
-    justify-content: flex-start !important ;
-    align-items: flex-start !important;
- }
+::ng-deep .mat-grid-tile-content {
+  justify-content: flex-start !important
+}
 
 .inquiries{
   margin-bottom: 10px;

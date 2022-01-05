@@ -1,5 +1,5 @@
 import { AddAnnouncementComponent } from './components/add-announcement/add-announcement.component';
-import { AddInquiryComponent } from './components/add-todo/add-inquiry.component';
+import { AddInquiryComponent } from './components/add-todo/add-todo.component';
 import { AddNotificationComponent } from './components/add-notification/add-notification.component';
 import { AnnouncementModalComponent } from './components/announcement-modal/announcement-modal.component';
 import { AnnouncementsListComponent } from './components/announcements-list/announcements-list.component';
@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToDosListComponent } from './components/todos-list/todos-list.component';
-import { InquiryModalComponent } from './components/todo-modal/inquiry-modal.component';
+import { InquiryModalComponent } from './components/todo-modal/todo-modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

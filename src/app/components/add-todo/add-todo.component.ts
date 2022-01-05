@@ -7,9 +7,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-add-inquiry',
-  templateUrl: './add-inquiry.component.html',
-  styleUrls: ['./add-inquiry.component.css']
+  selector: 'app-add-todo',
+  templateUrl: './add-todo.component.html',
+  styleUrls: ['./add-todo.component.css']
 })
 
 export class AddInquiryComponent implements OnInit {

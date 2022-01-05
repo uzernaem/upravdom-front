@@ -1,7 +1,6 @@
 <form [formGroup]="inquiryForm">
     <mat-dialog-content class="mat-typography">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>{{ announcement.inquiry_creator?.first_name }} {{ announcement.inquiry_creator?.last_name }}</mat-card-title>
               <mat-card-subtitle>{{ announcement.announcement_category_name }}</mat-card-subtitle>
             </mat-card-header>            
@@ -21,7 +20,7 @@
 
           <div><strong>Обсуждение:</strong></div>
     <div>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" [style.width.%]="100">
             <mat-label>Введите комментарий</mat-label>
             <textarea 
             matInput type="text" 
@@ -34,7 +33,7 @@
             required></textarea>
           </mat-form-field>
         <div>
-          <button mat-raised-button color="primary" (click)="saveComment(announcement.inquiry_id)" [disabled]="inquiryForm.invalid">
+          <button mat-button color="primary" (click)="saveComment(announcement.inquiry_id)" [disabled]="inquiryForm.invalid">
             Опубликовать
           </button>
         <p>{{ message }}</p>

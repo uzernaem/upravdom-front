@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ToDo, InquiryCategory } from 'src/app/models/inquiry.model';
 import { InquiryService } from 'src/app/_services/inquiry.service';
 import { MatDialog } from '@angular/material/dialog';
-import { InquiryModalComponent } from '../inquiry-modal/inquiry-modal.component';
-import { AddInquiryComponent } from '../add-inquiry/add-inquiry.component';
+import { InquiryModalComponent } from '../todo-modal/inquiry-modal.component';
+import { AddInquiryComponent } from '../add-todo/add-inquiry.component';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-inquiries-list',
-  templateUrl: './inquiries-list.component.html',
-  styleUrls: ['./inquiries-list.component.css']
+  selector: 'app-todos-list',
+  templateUrl: './todos-list.component.html',
+  styleUrls: ['./todos-list.component.css']
 })
 
-export class InquiriesListComponent implements OnInit {
+export class ToDosListComponent implements OnInit {
 
   todos?: ToDo[];
   listedtodos?: ToDo[];
@@ -111,7 +111,7 @@ export class InquiriesListComponent implements OnInit {
         (this.priorityFilter.includes(x.todo_priority!))).filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e))).filter(x => (x.inquiry_title?.includes(this.search_title)));
   }
 
-  newInquiryDialog(id?: number) {
+  inquiryDialog(id?: number) {
     const dialogRef = this.dialog.open(InquiryModalComponent, {
       data: {
         id: id,

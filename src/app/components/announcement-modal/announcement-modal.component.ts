@@ -2,10 +2,10 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { InquiryService } from 'src/app/_services/inquiry.service';
 import { Router } from '@angular/router';
 import { Comment, Announcement } from 'src/app/models/inquiry.model';
-import { User } from 'src/app/models/user.model';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BaseInquiryComponent } from '../base-inquiry/base-inquiry.component';
 
 export interface DialogData {
   id: number;
@@ -16,11 +16,8 @@ export interface DialogData {
   templateUrl: './announcement-modal.component.html',
   styleUrls: ['./announcement-modal.component.css']
 })
-export class AnnouncementModalComponent implements OnInit {  
-  
-  inquiryForm!: FormGroup;
-  currentuser?: User;
-  comments: Comment[] = [];
+export class AnnouncementModalComponent extends BaseInquiryComponent implements OnInit {  
+
   comment: Comment = {
     comment_text: ''
   };
@@ -33,12 +30,14 @@ export class AnnouncementModalComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) 
     public data: DialogData,
-    private inquiryService: InquiryService,
     private router: Router,
-    private tokenStorage: TokenStorageService) { }
+    private tokenStorage: TokenStorageService,
+    inquiryService: InquiryService) {
+    super(inquiryService);
+  }
 
     ngOnInit(): void {
-      this.currentuser = this.tokenStorage.getUser();
+      //this.currentuser = this.tokenStorage.getUser();
       this.inquiryForm = new FormGroup({
         comment: new FormControl('', Validators.required)
           });
@@ -60,35 +59,6 @@ export class AnnouncementModalComponent implements OnInit {
           },
           error: (e) => console.error(e)
         });
-    }
-
-    retrieveCurrentUser(): void {
-      this.inquiryService.getUser()
-        .subscribe({
-          next: (data) => {
-            this.currentuser = data;
-            console.log(data);
-          },
-          error: (e) => console.error(e)
-        });
-    }
-
-    saveComment(): void {      
-      let dateTime = new Date()
-      const data = {
-        comment_text: this.inquiryForm.value.comment,
-        inquiry: this.announcement.inquiry_id,
-        comment_creator: this.currentuser,
-        comment_created_at: dateTime     
-      };
-      this.inquiryService.createComment(data, this.announcement.inquiry_id)
-        .subscribe({
-          next: (res) => {
-            console.log(res);
-          },
-          error: (e) => console.error(e)
-        });
-        this.comments.unshift(data);
     }
 
     updateInquiry(publish: boolean): void {

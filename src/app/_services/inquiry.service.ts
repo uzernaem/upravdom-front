@@ -44,7 +44,7 @@ export class InquiryService {
     return this.http.get(`${serverUrl + 'categories'}/${id}`);
   }
 
-  get(id: any): Observable<ToDo> {
+  getToDo(id: any): Observable<ToDo> {
     return this.http.get(`${serverUrl + 'todos'}/${id}`);
   }
 
@@ -60,11 +60,11 @@ export class InquiryService {
     return this.http.post(`${serverUrl + 'comments'}/${id}`, data);
   }
 
-  create(data: any): Observable<any> {
+  createToDo(data: any): Observable<any> {
     return this.http.post(serverUrl + 'todos', data);
   }
 
-  update(id: any, data: any): Observable<any> {
+  updateToDo(id: any, data: any): Observable<any> {
     return this.http.put(`${serverUrl + 'todos'}/${id}`, data);
   }
 
@@ -76,7 +76,7 @@ export class InquiryService {
     return this.http.put(`${serverUrl + 'notifications'}/${id}`, data);
   }
 
-  delete(id: any): Observable<any> {
+  deleteToDo(id: any): Observable<any> {
     return this.http.delete(`${serverUrl + 'todos'}/${id}`);
   }
 

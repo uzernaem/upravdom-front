@@ -39,25 +39,14 @@ export class AddInquiryComponent implements OnInit {
       category: new FormControl('', Validators.required)
         });
    }
-
-  retrieveCurrentUser(): void {
-    this.inquiryService.getUser()
-      .subscribe({
-        next: (data) => {
-          this.currentuser = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-  }
-
+  
   saveInquiry(): void {
     const data = {
       inquiry_title: this.inquiryForm.value.title,
       inquiry_text: this.inquiryForm.value.text,
       todo_category: this.inquiryForm.value.category
     };
-    this.inquiryService.create(data)
+    this.inquiryService.createToDo(data)
       .subscribe({
         next: (res) => {
           console.log(res);

@@ -77,7 +77,7 @@ export class AnnouncementsListComponent implements OnInit {
        (this.categoryFilter.includes(x.announcement_category!))).filter(x => (x.inquiry_title?.includes(this.search_title))).filter(x => ((x.inquiry_created_at! >= s) && (x.inquiry_created_at! <= e)));
   }
 
-  newInquiryDialog(id?: number) {
+  inquiryDialog(id?: number) {
     const dialogRef = this.dialog.open(AnnouncementModalComponent, {
       data: {
         id: id,

@@ -34,7 +34,7 @@
             required></textarea>
           </mat-form-field>
         <div>
-          <button mat-raised-button color="primary" (click)="saveComment()" [disabled]="inquiryForm.invalid">
+          <button mat-raised-button color="primary" (click)="saveComment(announcement.inquiry_id)" [disabled]="inquiryForm.invalid">
             Опубликовать
           </button>
         <p>{{ message }}</p>

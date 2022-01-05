@@ -1,13 +1,16 @@
 import { DataRowOutlet } from "@angular/cdk/table"
 import { User } from "./user.model"
 
-export class ToDo {
+export class Inquiry {
     inquiry_id?: number
     inquiry_title?: string
     inquiry_text?: string
     inquiry_creator?: User
     inquiry_created_at?: Date
     inquiry_updated_at?: Date
+}
+
+export class ToDo extends Inquiry {
     todo_assigned_to?: any
     todo_priority?: string
     todo_status?: string
@@ -18,13 +21,7 @@ export class ToDo {
     comments?: Comment[]
 }
 
-export class Announcement {
-    inquiry_id?: number
-    inquiry_title?: string
-    inquiry_text?: string
-    inquiry_creator?: User
-    inquiry_created_at?: Date
-    inquiry_updated_at?: Date
+export class Announcement extends Inquiry {
     announcement_is_visible?: boolean
     announcement_status?: string
     announcement_auto_invisible_date?: Date
@@ -33,26 +30,14 @@ export class Announcement {
     comments?: Comment[]
 }
 
-export class Notification {
-    inquiry_id?: number
-    inquiry_title?: string
-    inquiry_text?: string
-    inquiry_creator?: User
-    inquiry_created_at?: Date
-    inquiry_updated_at?: Date
+export class Notification extends Inquiry {
     notification_is_read?: boolean
     notification_recipient?: User
     notification_category?: string
     notification_category_name?: string
 }
 
-export class Poll {
-    inquiry_id?: number
-    inquiry_title?: string
-    inquiry_text?: string
-    inquiry_creator?: User
-    inquiry_created_at?: Date
-    inquiry_updated_at?: Date
+export class Poll extends Inquiry {
     poll_open?: boolean
     poll_preliminary_results?: boolean
     poll_deadline?: Date

@@ -47,17 +47,6 @@ export class AddAnnouncementComponent implements OnInit {
         });
    }
 
-  retrieveCurrentUser(): void {
-    this.inquiryService.getUser()
-      .subscribe({
-        next: (data) => {
-          this.currentuser = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-  }
-
   saveInquiry(): void {
     const d = new Date(this.inquiryForm.value.date)
     const data = {

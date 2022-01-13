@@ -21,6 +21,7 @@
         <mat-form-field class="full-width-input">
           <input matInput
               type="password"
+              placeholder="Пароль"
               name="password"
               [(ngModel)]="form.password"
               required
@@ -31,15 +32,10 @@
             Пожалуйста, введите пароль пользователя
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary">Login</button>
+        <br>
+        <button mat-raised-button color="primary">Войти</button>
       </mat-card-content>
   </form>
   
-  <form *ngIf="isLoginFailed" >
-    <mat-card>
-      <mat-card-content>    
-        <h2>{{errorMessage}}</h2>
-      </mat-card-content>
-    </mat-card>
-  </form>
+
   </div>

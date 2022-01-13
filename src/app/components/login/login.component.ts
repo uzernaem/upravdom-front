@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
+  errorMessage = 'Неправильное имя пользователя и/или пароль!';
   token = '';
   roles: string[] = [];
   user?: User;
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.form;
-
     this.authService.login(username, password).subscribe({
       next: data => {
         this.tokenStorage.saveToken(data.access);
@@ -51,7 +50,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       },
       error: err => {
-        this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     });

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ToDo, InquiryCategory, Announcement, Notification, Poll } from '../models/inquiry.model';
+import { ToDo, InquiryCategory, Announcement, Notification, Poll, Vote, Info } from '../models/inquiry.model';
 import { User } from '../models/user.model';
 import { serverUrl } from '../_services/baseurl';
 
@@ -9,6 +9,10 @@ import { serverUrl } from '../_services/baseurl';
   providedIn: 'root'
 })
 export class InquiryService {
+
+  getInfo() {
+    return this.http.get<Info[]>(serverUrl + 'info');
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -56,6 +60,10 @@ export class InquiryService {
     return this.http.get(`${serverUrl + 'notifications'}/${id}`);
   }
 
+  getPoll(id: any): Observable<Poll> {
+    return this.http.get(`${serverUrl + 'polls'}/${id}`);
+  }
+
   createComment(data: any, id: any): Observable<any> {
     return this.http.post(`${serverUrl + 'comments'}/${id}`, data);
   }
@@ -98,5 +106,13 @@ export class InquiryService {
   
   createNotification(data: any): Observable<Notification> {
     return this.http.post<Notification>(serverUrl + 'notifications', data);
+  }
+
+  createPoll(data: any): Observable<Poll> {
+    return this.http.post<Poll>(serverUrl + 'polls', data);
+  }
+
+  vote(data: any): Observable<any> {
+    return this.http.post(serverUrl + 'vote', data);
   }
 }

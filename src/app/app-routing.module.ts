@@ -9,6 +9,7 @@ import { AnnouncementsListComponent } from './components/announcements-list/anno
 import { MenuComponent } from './components/menu/menu.component';
 import { NotificationsListComponent } from './components/notifications-list/notifications-list.component';
 import { PollsListComponent } from './components/polls-list/polls-list.component';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 
 const routes: Routes = [ 
   { path: '', component: MenuComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'info', component: InfoPanelComponent }
 ];
 
 @NgModule({

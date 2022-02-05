@@ -1,0 +1,5 @@
+.mat-button.mat-flat .mat-button-focus-overlay {
+    display: none;
+    pointer-events:none;
+    background-color: transparent;
+  }

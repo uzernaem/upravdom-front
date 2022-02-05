@@ -46,6 +46,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RouterModule } from '@angular/router';
 import { BaseInquiryComponent } from './components/base-inquiry/base-inquiry.component';
+import { AddPollComponent } from './components/add-poll/add-poll.component';
+import { PollModalComponent } from './components/poll-modal/poll-modal.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
+
 
 
 const modules = [
@@ -78,6 +84,8 @@ const modules = [
   MatToolbarModule,
   ReactiveFormsModule,
   RouterModule,
+  MatRadioModule,
+  MatProgressBarModule
 ];
 
 @NgModule({
@@ -99,6 +107,9 @@ const modules = [
     ProfileComponent,
     RegisterComponent,
     BaseInquiryComponent,
+    AddPollComponent,
+    PollModalComponent,
+    InfoPanelComponent,
   ],
   imports: [modules, BrowserAnimationsModule],
   exports: [modules],

@@ -38,9 +38,23 @@ export class Notification extends Inquiry {
 }
 
 export class Poll extends Inquiry {
-    poll_open?: boolean
+    //poll_open?: boolean
     poll_preliminary_results?: boolean
     poll_deadline?: Date
+    vote_options?: VoteOption[]
+}
+
+export class VoteOption {
+    id?: number
+    poll?: Poll
+    vote_option_text?: string
+    votes?: Vote[]
+    percentage?: number
+}
+
+export class Vote {
+    voter?: User
+    selected_option?: VoteOption
 }
 
 export class Comment {
@@ -59,4 +73,9 @@ export class InquiryCategory {
 export class ToDoStatus {
     status_id?: string
     status_name?: string
+}
+
+export class Info {
+    info_title?: string
+    info_text?: string
 }

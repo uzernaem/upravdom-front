@@ -1,0 +1,8 @@
+
+    <div *ngFor="let info of info_list">
+          <h1>{{ info.info_title }}</h1>
+          <mat-card-content>
+            <h3 [innerText]="info.info_text"></h3>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+    </div>

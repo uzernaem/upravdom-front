@@ -1,0 +1,30 @@
+<form [formGroup]="inquiryForm">
+    <mat-dialog-content class="mat-typography">
+            <mat-card-header>
+              <mat-card-title>{{ poll.inquiry_creator?.first_name }} {{ poll.inquiry_creator?.last_name }}</mat-card-title>
+            </mat-card-header>            
+            <mat-card-content>              
+              <h2 mat-dialog-title>{{ poll.inquiry_title }}</h2>
+              <p>
+                {{ poll.inquiry_text }}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+
+            <div *ngFor="let vote_option of vote_options">
+                <div><button mat-flat-button (click)="vote(vote_option.id!)">{{ vote_option.vote_option_text }}</button></div>
+                <mat-progress-bar mode="determinate" [value]="vote_option.percentage"></mat-progress-bar>
+                <div><label>{{vote_option.percentage}}%</label></div>
+            </div>            
+            <div>{{message}}</div>
+            <div>Всего голосов: {{vote_sum}}</div>
+
+
+    </mat-dialog-content>
+    
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Закрыть</button>
+    </mat-dialog-actions>
+    
+</form>

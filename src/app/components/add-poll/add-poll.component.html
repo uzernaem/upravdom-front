@@ -1,0 +1,77 @@
+<form [formGroup]="inquiryForm">
+    <h2 mat-dialog-title>Новое голосование</h2>
+    <div>
+      <label><strong>От:</strong></label>
+      {{ currentuser.first_name }} {{ currentuser.last_name }}
+    </div>
+        <mat-dialog-content class="mat-typography">
+          <div class="submit-form">          
+              <div class="form-group">
+                <mat-form-field appearance="fill" >
+                  <mat-label>Тема голосования</mat-label>
+                  <input matInput type="text" placeholder="Введите тему голосования" name="inquiry_title" required formControlName="title" maxlength="256">
+                  <mat-error>
+                    Пожалуйста, введите тему голосования
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Текст голосования</mat-label>
+                  <textarea
+                  required
+                  matInput type="text" 
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="5"
+                  cdkAutosizeMaxRows="8"
+                  placeholder="Введите текст голосования"
+                  name="inquiry_text"
+                  formControlName="text"
+                  maxlength="4096"></textarea>
+                  <mat-error>
+                    Пожалуйста, введите текст голосования
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+            <mat-label>Дата завершения голосования:</mat-label>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Выберите дату</mat-label>
+                    <input matInput [matDatepicker]="dp" required formControlName="deadline" [formControl]="datePickerCtrl">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <p><mat-checkbox formControlName="preliminary_results" [checked]="true">Показ предварительных результатов</mat-checkbox></p>
+
+            <div class="form-group">
+                <mat-form-field appearance="fill" >
+                  <mat-label>Добавить вариант голосования</mat-label>
+                  <input matInput type="text" placeholder="Введите вариант голосования" formControlName="voteoption" maxlength="256">
+                  <mat-error>
+                    Пожалуйста, введите тему голосования
+                  </mat-error>
+                </mat-form-field>
+                <button mat-button (click)="addVoteOption()">Добавить</button>
+                <mat-selection-list #voteoptions [multiple]="false">
+                    <mat-list-option *ngFor="let voteoption of voteoptions_list" [value]="voteoption">
+                        <mat-grid-list cols="8">
+                            <mat-grid-tile colspan="7">{{voteoption.vote_option_text}}</mat-grid-tile>
+                            <mat-grid-tile><button mat-icon-button (click)="removeVoteOption(voteoption)" color="primary"><mat-icon>delete</mat-icon></button></mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </div>
+
+
+        </mat-dialog-content>
+    
+        <mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit" [disabled]="inquiryForm.invalid" (click)="saveInquiry()">Создать</button>     
+            <button mat-button mat-dialog-close>Закрыть</button>
+        </mat-dialog-actions>
+      </form>

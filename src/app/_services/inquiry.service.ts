@@ -10,6 +10,14 @@ import { serverUrl } from '../_services/baseurl';
 })
 export class InquiryService {
 
+  upload(formData: FormData) {    
+    return this.http.post<any>(serverUrl + 'files', formData);
+  }
+
+  updatePhoto(formData: FormData, id: any) {    
+    return this.http.put<any>(`${serverUrl + 'files'}/${id}`, formData);
+  }
+
   getInfo() {
     return this.http.get<Info[]>(serverUrl + 'info');
   }
@@ -22,6 +30,10 @@ export class InquiryService {
 
   getUser(): Observable<User> {    
     return this.http.get<User>(serverUrl + 'user');
+  }
+
+  updateUser(data: any): Observable<User> {
+    return this.http.put(serverUrl + 'user', data);
   }
 
   getToDos(): Observable<ToDo[]> {

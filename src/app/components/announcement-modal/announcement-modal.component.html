@@ -1,6 +1,7 @@
 <form [formGroup]="inquiryForm">
     <mat-dialog-content class="mat-typography">
             <mat-card-header>
+              <img *ngIf="announcement.inquiry_creator!.photo" mat-card-avatar src="{{ announcement.inquiry_creator!.photo_url }}" alt="Изображение профиля">
               <mat-card-title>{{ announcement.inquiry_creator?.first_name }} {{ announcement.inquiry_creator?.last_name }}</mat-card-title>
               <mat-card-subtitle>{{ announcement.announcement_category_name }}</mat-card-subtitle>
             </mat-card-header>            

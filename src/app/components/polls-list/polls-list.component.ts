@@ -7,6 +7,7 @@ import { AddAnnouncementComponent } from '../add-announcement/add-announcement.c
 import { AnnouncementModalComponent } from '../announcement-modal/announcement-modal.component';
 import { AddPollComponent } from '../add-poll/add-poll.component';
 import { PollModalComponent } from '../poll-modal/poll-modal.component';
+import { serverUrl } from 'src/app/_services/baseurl';
 
 @Component({
   selector: 'app-polls-list',
@@ -42,6 +43,7 @@ export class PollsListComponent implements OnInit {
         next: (data) => {
           this.polls = data;
           this.polls.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
+          this.polls.forEach(a => {a.inquiry_creator!.photo_url = serverUrl.slice(0, -1) + a.inquiry_creator?.photo?.file;});
           this.applyFilters();
           console.log(data);
         },

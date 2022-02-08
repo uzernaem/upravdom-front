@@ -79,3 +79,8 @@ export class Info {
     info_title?: string
     info_text?: string
 }
+
+export class File {
+    id?: number
+    file?: string
+}

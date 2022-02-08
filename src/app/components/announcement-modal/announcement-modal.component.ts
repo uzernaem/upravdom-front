@@ -6,6 +6,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseInquiryComponent } from '../base-inquiry/base-inquiry.component';
+import { serverUrl } from 'src/app/_services/baseurl';
 
 export interface DialogData {
   id: number;
@@ -53,6 +54,7 @@ export class AnnouncementModalComponent extends BaseInquiryComponent implements 
         .subscribe({
           next: (data) => {
             this.announcement = data;
+            this.announcement.inquiry_creator!.photo_url = serverUrl.slice(0, -1) + this.announcement.inquiry_creator?.photo?.file;
             this.comments = data.comments!.sort((a,b) => b.comment_id! - a.comment_id!);
             this.comments.forEach(a => (a.comment_created_at = new Date(a.comment_created_at!)));
             console.log(data);

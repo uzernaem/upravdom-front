@@ -1,14 +1,16 @@
 <form [formGroup]="inquiryForm" >
-<h2 mat-dialog-title>{{ currentToDo.inquiry_title }}</h2>
 <mat-dialog-content class="mat-typography" >
+
+  <mat-card-header>
+    <img *ngIf="currentToDo.inquiry_creator!.photo" mat-card-avatar src="{{ currentToDo.inquiry_creator!.photo_url }}" alt="Изображение профиля">
+    <mat-card-title>{{ currentToDo.inquiry_creator?.first_name }} {{ currentToDo.inquiry_creator?.last_name }}</mat-card-title>
+    <mat-card-subtitle>{{ currentToDo.todo_category_name }}</mat-card-subtitle>
+  </mat-card-header>            
+
+  <h2 mat-dialog-title>{{ currentToDo.inquiry_title }}</h2>
 
     <div *ngIf="currentToDo.inquiry_id" class="edit-form">
           <div>
-            <label><strong>От: </strong></label>
-            {{ currentToDo.inquiry_creator!.first_name }} {{ currentToDo.inquiry_creator!.last_name }}
-          </div>
-          <div >
-            <label><strong>Текст заявки: </strong></label>
             <mat-card>
                 {{ currentToDo.inquiry_text }}
             </mat-card>

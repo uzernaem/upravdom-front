@@ -7,6 +7,7 @@ import { BaseInquiryComponent } from '../base-inquiry/base-inquiry.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Poll, Vote, VoteOption } from 'src/app/models/inquiry.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { serverUrl } from 'src/app/_services/baseurl';
 
 @Component({
   selector: 'app-poll-modal',
@@ -47,6 +48,7 @@ export class PollModalComponent  extends BaseInquiryComponent implements OnInit 
       .subscribe({
         next: (data) => {
           this.poll = data;
+          this.poll.inquiry_creator!.photo_url = serverUrl.slice(0, -1) + this.poll.inquiry_creator?.photo?.file;
           this.vote_options = data.vote_options!;
           this.vote_options.forEach(x => {this.vote_sum += x.votes!.length;
             x.votes?.forEach(y => { 

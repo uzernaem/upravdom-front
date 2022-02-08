@@ -6,6 +6,7 @@ import { InquiryModalComponent } from '../todo-modal/todo-modal.component';
 import { AddInquiryComponent } from '../add-todo/add-todo.component';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { serverUrl } from 'src/app/_services/baseurl';
 
 @Component({
   selector: 'app-todos-list',
@@ -65,7 +66,8 @@ export class ToDosListComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.todos = data;
-          this.todos.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
+          this.todos.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)))
+          this.todos.forEach(a => {a.inquiry_creator!.photo_url = serverUrl.slice(0, -1) + a.inquiry_creator?.photo?.file;});
           this.applyFilters();
           console.log(data);
         },

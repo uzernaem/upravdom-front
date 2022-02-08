@@ -16,7 +16,6 @@ import { BaseInquiryComponent } from '../base-inquiry/base-inquiry.component';
 })
 export class NotificationsListComponent extends BaseInquiryComponent implements OnInit {
 
-  //currentuser: User = {};
   notifications?: Notification[];
   listednotifications?: Notification[];
   search_title = '';

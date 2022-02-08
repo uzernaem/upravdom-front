@@ -1,8 +1,10 @@
 <form [formGroup]="inquiryForm">
     <mat-dialog-content class="mat-typography">
-            <mat-card-header>
-              <mat-card-title>{{ poll.inquiry_creator?.first_name }} {{ poll.inquiry_creator?.last_name }}</mat-card-title>
-            </mat-card-header>            
+      <mat-card-header>
+        <img *ngIf="poll.inquiry_creator!.photo" mat-card-avatar src="{{ poll.inquiry_creator!.photo_url }}" alt="Изображение профиля">
+        <mat-card-title>{{ poll.inquiry_creator?.first_name }} {{ poll.inquiry_creator?.last_name }}</mat-card-title>
+        <mat-card-subtitle>Голосование</mat-card-subtitle>
+      </mat-card-header>              
             <mat-card-content>              
               <h2 mat-dialog-title>{{ poll.inquiry_title }}</h2>
               <p>

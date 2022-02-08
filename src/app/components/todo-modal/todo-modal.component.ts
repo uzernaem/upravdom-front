@@ -7,6 +7,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseInquiryComponent } from '../base-inquiry/base-inquiry.component';
+import { serverUrl } from 'src/app/_services/baseurl';
 
 export interface DialogData {
   id: number;
@@ -64,6 +65,7 @@ export class InquiryModalComponent extends BaseInquiryComponent implements OnIni
         .subscribe({
           next: (data) => {
             this.currentToDo = data;
+            this.currentToDo.inquiry_creator!.photo_url = serverUrl.slice(0, -1) + this.currentToDo.inquiry_creator?.photo?.file;
             this.inquiryForm.patchValue({
               assignee: data.todo_assigned_to.id,
               status: data.todo_status

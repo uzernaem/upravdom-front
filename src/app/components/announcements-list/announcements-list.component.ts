@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { AddAnnouncementComponent } from '../add-announcement/add-announcement.component';
 import { AnnouncementModalComponent } from '../announcement-modal/announcement-modal.component';
+import { serverUrl } from 'src/app/_services/baseurl';
 
 @Component({
   selector: 'app-announcements-list',
@@ -53,6 +54,7 @@ export class AnnouncementsListComponent implements OnInit {
         next: (data) => {
           this.announcements = data;
           this.announcements.forEach(a => (a.inquiry_created_at = new Date(a.inquiry_created_at!)));
+          this.announcements.forEach(a => {a.inquiry_creator!.photo_url = serverUrl.slice(0, -1) + a.inquiry_creator?.photo?.file;})
           this.applyFilters();
           console.log(data);
         },

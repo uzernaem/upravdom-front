@@ -1,16 +1,74 @@
-<div class="container" >
-  <mat-card>
-    <mat-card-subtitle>{{ currentUser.username }}</mat-card-subtitle>
-    <mat-card-title>{{ currentUser.first_name }} {{ currentUser.last_name }}</mat-card-title>
-    <mat-card-content>
-      <div fxLayout="row wrap" fxLayoutGap="20px">
-        <div class="icon-text"><mat-icon>mail</mat-icon>{{ currentUser.email }}</div>
-        <div class="icon-text"><mat-icon>phone</mat-icon>{{ currentUser.phone_number }}</div>
+<mat-card>
+  <mat-card-title>Профиль пользователя</mat-card-title>
+<form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="mat-typography">
+      <div class="submit-form">
+        <div class="form-group">
+            <img src="{{currentUser!.photo_url}}" alt="Изображение профиля">
+        </div>
+        <div class="form-group">
+          <div><input text-align="center" type="file" name="profile" formControlName="profile" (change)="onChange($event)" /></div>
+        </div>
+        <div class="form-group">
+          <div><button mat-raised-button color="primary" type="submit">Обновить изображение</button></div>
+          <div><label *ngIf="imgSubmitted">Изображение профиля обновлено</label></div>
+        </div>
       </div>
-    </mat-card-content>
-    <mat-divider inset></mat-divider>
-    <mat-card-actions>
-    </mat-card-actions>
-    <mat-card-footer>
-    </mat-card-footer>
-  </mat-card>
+    </mat-dialog-content>
+  </form>
+
+  <form [formGroup]="profileForm">
+        <mat-dialog-content class="mat-typography">
+          <div class="submit-form">
+
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Имя</mat-label>
+                  <input matInput type="text" placeholder="Введите имя" name="first_name" required formControlName="first_name" maxlength="256">
+                  <mat-error>
+                    Пожалуйста, введите имя
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Фамилия</mat-label>
+                  <input matInput type="text" placeholder="Введите фамилию" name="last_name" required formControlName="last_name" maxlength="256">
+                  <mat-error>
+                    Пожалуйста, введите фамилию
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Номер телефона</mat-label>
+                  <input matInput type="text" placeholder="Введите номер телефона" name="phone_number" required formControlName="phone_number" maxlength="16">
+                  <mat-error>
+                    Пожалуйста, введите номер телефона
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="fill">
+                  <mat-label>Адрес электронной почты</mat-label>
+                  <input matInput type="text" placeholder="Введите адрес электронной почты" name="email" required formControlName="email" maxlength="256">
+                  <mat-error>
+                    Пожалуйста, введите адрес электронной почты
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+        </div>
+
+
+        </mat-dialog-content>
+    
+        <mat-dialog-actions>
+            <div><button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit" (click)="updateProfile()">Обновить данные</button></div>
+            <div><label *ngIf="submitted">Данные пользователя обновлены</label></div>
+        </mat-dialog-actions>        
+      </form>
+    </mat-card>

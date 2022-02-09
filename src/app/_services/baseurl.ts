@@ -1,1 +1,1 @@
-export const serverUrl = 'https://upravdom-23b8c.ondigitalocean.app/'
+export const serverUrl = 'https://upravdom-ageq7.ondigitalocean.app/'
